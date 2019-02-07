@@ -1,0 +1,88 @@
+﻿@model ClientValidation.Models.Validation
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Enter the details</h2>
+
+@*@if (ViewData.ModelState.IsValid)
+{
+    if (@ViewBag.Name != null)
+    {
+        <b>
+            Name : @ViewBag.Name<br />
+            Email : @ViewBag.Email
+        </b>
+    }
+}*@
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    
+    <fieldset >
+        
+        <div>
+            @Html.LabelFor(model => model.Name ) :
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name) 
+        </div><br />
+
+
+        <div>
+            @Html.LabelFor(model => model.Phone) :
+            @Html.EditorFor(model => model.Phone)
+            @Html.ValidationMessageFor(model => model.Phone)
+        </div><br />
+
+
+        <div>
+            @Html.LabelFor(model => model.Email) :
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div><br />
+        
+        <div>
+            @Html.LabelFor(model => model.Gender)
+            <select>
+                <option>Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.Gender)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Upload_files)
+            @using (Html.BeginForm("Index", "Validation", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+            <input type="file" name="file" />
+            
+            }
+        </div>
+        <br /><br />
+        <p>
+            <input type="submit" value="submit" id="myForm" />
+        </p>
+    </fieldset>
+    
+}
+
+
+@*<script>
+    function submitForm()
+    {
+        var frm = document.getElementById('submit')[0];
+        frm.submit(); // Submit the form
+        frm.reset();  // Reset all form data
+        return false;
+
+
+    }
+</script>*@
+
+<h3 style="color:red">@TempData["Success Message"]</h3>
+@*<script>
+    var form = document.getElementById("myForm");
+    form.reset();
+</script>*@
