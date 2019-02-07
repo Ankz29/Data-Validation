@@ -36,7 +36,7 @@ namespace ClientValidation.Controllers
                 ViewBag.Message = "File Uploaded Successfully!!";
                 //clear the model once data is submitted// 
                 ModelState.Clear();
-
+                //on click of submit, show the text message// 
                 TempData["Success Message"] = "data saved successfully";
 
                 return View();
