@@ -20,7 +20,8 @@ namespace ClientValidation.Controllers
         [HttpPost]
         public ActionResult Index(Validation model)
         {
-            
+            if (ModelState.IsValid)
+            {
                 ViewBag.Name = model.Name;
                 ViewBag.Phone = model.Phone;
                 ViewBag.Email = model.Email;
@@ -28,7 +29,8 @@ namespace ClientValidation.Controllers
             ModelState.Clear();
                
             TempData["Success Message"] = "data saved successfully";
-            
+	    return View(); 
+            }
             return View(model);
             
         }
